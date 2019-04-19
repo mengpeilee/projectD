@@ -6,11 +6,9 @@ class RouterComponent extends Component {
   render() {
     return (
       <Router backAndroidHandler={() => true}>
-        <Stack duration={0}>
-          <Scene key="root" initial>
-            <Scene key="homePage" component={HomePage} hideNavBar initial />
-          </Scene>
-        </Stack>
+        <Scene key="root" initial>
+          <Scene key="homePage" component={HomePage} hideNavBar initial />
+        </Scene>
       </Router>
     );
   }
