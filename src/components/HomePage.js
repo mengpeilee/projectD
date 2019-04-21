@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { View, Text } from 'react-native';
+import { Button } from 'react-native-paper';
 
 const styles = {
   containerStyle: {
@@ -11,9 +11,13 @@ const styles = {
 class HomePage extends Component {
   render() {
     return (
-      <View style={styles.containerStyle}>
-        <Text>Hiiiii</Text>
-      </View>
+      <Button
+        icon="add-a-photo"
+        mode="contained"
+        onPress={() => console.log('Pressed')}
+      >
+        Press me
+      </Button>
     );
   }
 }
