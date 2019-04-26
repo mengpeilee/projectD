@@ -81,83 +81,99 @@ const styles = {
     alignItems: 'center',
     flex: 1,
   },
-  titleArea: {
-    flex: 2,
-  },
-  rehabilitationIcon: {
-    backgroundColor: '#66D9D9',
-  },
-  rankingListIcon: {
-    backgroundColor: secondColor,
-  },
+  titleArea: { flex: 2 },
+  rehabilitationIcon: { backgroundColor: '#66D9D9' },
+  rankingListIcon: { backgroundColor: secondColor },
   personalInformationIcon: {
     backgroundColor: lightColor,
     color: '#fff',
   },
-  cardTitle: {
-    fontSize: 30,
-  },
+  cardTitle: { fontSize: 30 },
 };
 
 class HomePage extends Component {
+  componentDidMount() {
+    console.log('test');
+  }
+
   render() {
+    const {
+      container,
+      header,
+      headerTitle,
+      headerSubTitle,
+      panel,
+      panelEveryday,
+      panelLabel,
+      panelNumber,
+      panelTotal,
+      panelScore,
+      functionSection,
+      functionCard,
+      iconArea,
+      rehabilitationIcon,
+      titleArea,
+      cardTitle,
+      rankingListIcon,
+      personalInformationIcon,
+    } = styles;
+
     return (
-      <View style={styles.container}>
-        <View style={styles.header}>
-          <Text style={styles.headerTitle}>Project D</Text>
-          <Text style={styles.headerSubTitle}>頭頸癌吞嚥復健app</Text>
+      <View style={container}>
+        <View style={header}>
+          <Text style={headerTitle}>Project D</Text>
+          <Text style={headerSubTitle}>頭頸癌吞嚥復健app</Text>
         </View>
-        <View style={styles.panel}>
-          <View style={styles.panelEveryday}>
-            <Text style={styles.panelLabel}>每天次數</Text>
-            <Text style={styles.panelNumber}>5</Text>
+        <View style={panel}>
+          <View style={panelEveryday}>
+            <Text style={panelLabel}>每天次數</Text>
+            <Text style={panelNumber}>5</Text>
           </View>
-          <View style={styles.panelTotal}>
-            <Text style={styles.panelLabel}>總次數</Text>
-            <Text style={styles.panelNumber}>45</Text>
+          <View style={panelTotal}>
+            <Text style={panelLabel}>總次數</Text>
+            <Text style={panelNumber}>45</Text>
           </View>
-          <View style={styles.panelScore}>
-            <Text style={styles.panelLabel}>競賽分數</Text>
-            <Text style={styles.panelNumber}>7</Text>
+          <View style={panelScore}>
+            <Text style={panelLabel}>競賽分數</Text>
+            <Text style={panelNumber}>7</Text>
           </View>
         </View>
-        <View style={styles.functionSection}>
-          <View style={styles.functionCard}>
-            <View style={styles.iconArea}>
+        <View style={functionSection}>
+          <View style={functionCard}>
+            <View style={iconArea}>
               <Avatar.Icon
                 size={65}
                 icon="accessibility"
                 color="#fff"
-                style={styles.rehabilitationIcon}
+                style={rehabilitationIcon}
+                onPress={() => {
+                  console.log('Hiii');
+                }}
               />
             </View>
-            <View style={styles.titleArea}>
-              <Text style={styles.cardTitle}>吞嚥復健</Text>
+            <View style={titleArea}>
+              <Text style={cardTitle}>吞嚥復健</Text>
             </View>
           </View>
-          <View style={styles.functionCard}>
-            <View style={styles.iconArea}>
-              <Avatar.Icon
-                size={65}
-                icon="list"
-                style={styles.rankingListIcon}
-              />
+          <View style={functionCard}>
+            <View style={iconArea}>
+              <Avatar.Icon size={65} icon="list" style={rankingListIcon} />
             </View>
-            <View style={styles.titleArea}>
-              <Text style={styles.cardTitle}>競賽排名</Text>
+            <View style={titleArea}>
+              <Text style={cardTitle}>競賽排名</Text>
             </View>
           </View>
-          <View style={styles.functionCard}>
-            <View style={styles.iconArea}>
+          <View style={functionCard}>
+            <View style={iconArea}>
               <Avatar.Icon
                 size={65}
                 icon="person"
                 color="#fff"
-                style={styles.personalInformationIcon}
+                style={personalInformationIcon}
               />
             </View>
-            <View style={styles.titleArea}>
-              <Text style={styles.cardTitle}>個人資訊</Text>
+            <View style={titleArea}>
+              <Text style={cardTitle}>個人資訊</Text>
             </View>
           </View>
         </View>
