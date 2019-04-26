@@ -146,9 +146,6 @@ class HomePage extends Component {
                 icon="accessibility"
                 color="#fff"
                 style={rehabilitationIcon}
-                onPress={() => {
-                  console.log('Hiii');
-                }}
               />
             </View>
             <View style={titleArea}>
