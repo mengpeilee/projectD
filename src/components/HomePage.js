@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
-import { View, Text } from 'react-native';
+import { View, Text, TouchableOpacity } from 'react-native';
 import { Avatar } from 'react-native-paper';
+import { Actions } from 'react-native-router-flux';
 
 const brandColor = '#54D6C3'; // 藍綠色
 const secondColor = '#1A71B7'; // 藍色
@@ -139,7 +140,12 @@ class HomePage extends Component {
           </View>
         </View>
         <View style={functionSection}>
-          <View style={functionCard}>
+          <TouchableOpacity
+            onPress={() => {
+              Actions.recovery();
+            }}
+            style={functionCard}
+          >
             <View style={iconArea}>
               <Avatar.Icon
                 size={65}
@@ -151,16 +157,16 @@ class HomePage extends Component {
             <View style={titleArea}>
               <Text style={cardTitle}>吞嚥復健</Text>
             </View>
-          </View>
-          <View style={functionCard}>
+          </TouchableOpacity>
+          <TouchableOpacity style={functionCard}>
             <View style={iconArea}>
               <Avatar.Icon size={65} icon="list" style={rankingListIcon} />
             </View>
             <View style={titleArea}>
               <Text style={cardTitle}>競賽排名</Text>
             </View>
-          </View>
-          <View style={functionCard}>
+          </TouchableOpacity>
+          <TouchableOpacity style={functionCard}>
             <View style={iconArea}>
               <Avatar.Icon
                 size={65}
@@ -172,7 +178,7 @@ class HomePage extends Component {
             <View style={titleArea}>
               <Text style={cardTitle}>個人資訊</Text>
             </View>
-          </View>
+          </TouchableOpacity>
         </View>
       </View>
     );
