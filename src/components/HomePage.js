@@ -157,7 +157,7 @@ class HomePage extends Component {
           </TouchableOpacity>
           <TouchableOpacity style={functionCard}>
             <View style={iconArea}>
-              <Avatar.Icon size={65} icon="list" style={rankingListIcon} />
+              <Avatar.Icon size={65} icon="equalizer" style={rankingListIcon} />
             </View>
             <View style={titleArea}>
               <Text style={cardTitle}>競賽排名</Text>
