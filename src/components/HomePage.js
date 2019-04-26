@@ -83,12 +83,9 @@ const styles = {
     flex: 1,
   },
   titleArea: { flex: 2 },
-  rehabilitationIcon: { backgroundColor: '#66D9D9' },
+  rehabilitationIcon: { backgroundColor: brandColor },
   rankingListIcon: { backgroundColor: secondColor },
-  personalInformationIcon: {
-    backgroundColor: lightColor,
-    color: '#fff',
-  },
+  personalInformationIcon: { backgroundColor: lightColor },
   cardTitle: { fontSize: 30 },
 };
 
