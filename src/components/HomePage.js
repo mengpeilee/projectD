@@ -2,18 +2,18 @@ import React, { Component } from 'react';
 import { View, Text } from 'react-native';
 import { Avatar } from 'react-native-paper';
 
+const brandColor = '#54D6C3'; // 藍綠色
+const secondColor = '#1A71B7'; // 藍色
+const lightColor = '#FFCC33'; // 黃色
+
 const styles = {
-  // 主色調
-  // 藍綠色:  #54D6C3
-  // 藍色:    #1A71B7
-  // 黃色:    #FFCC33
   container: {
     flex: 1,
     backgroundColor: '#f2f2f2',
   },
   // header
   header: {
-    backgroundColor: '#54D6C3',
+    backgroundColor: brandColor,
     height: 80,
     justifyContent: 'center',
     alignItems: 'center',
@@ -46,7 +46,7 @@ const styles = {
     flex: 1,
   },
   panelTotal: {
-    borderColor: '#54D6C3',
+    borderColor: brandColor,
     borderLeftWidth: 3,
     borderRightWidth: 3,
     alignItems: 'center',
@@ -88,10 +88,10 @@ const styles = {
     backgroundColor: '#66D9D9',
   },
   rankingListIcon: {
-    backgroundColor: '#1A71B7',
+    backgroundColor: secondColor,
   },
   personalInformationIcon: {
-    backgroundColor: '#FFCC33',
+    backgroundColor: lightColor,
     color: '#fff',
   },
   cardTitle: {
