@@ -1,19 +1,20 @@
 import React, { Component } from 'react';
-import { View, Text } from 'react-native';
+import { View, Text, TouchableOpacity } from 'react-native';
 import { Avatar } from 'react-native-paper';
+import { Actions } from 'react-native-router-flux';
+
+const brandColor = '#54D6C3'; // 藍綠色
+const secondColor = '#1A71B7'; // 藍色
+const lightColor = '#FFCC33'; // 黃色
 
 const styles = {
-  // 主色調
-  // 藍綠色:  #54D6C3
-  // 藍色:    #1A71B7
-  // 黃色:    #FFCC33
   container: {
     flex: 1,
     backgroundColor: '#f2f2f2',
   },
   // header
   header: {
-    backgroundColor: '#54D6C3',
+    backgroundColor: brandColor,
     height: 80,
     justifyContent: 'center',
     alignItems: 'center',
@@ -46,7 +47,7 @@ const styles = {
     flex: 1,
   },
   panelTotal: {
-    borderColor: '#54D6C3',
+    borderColor: brandColor,
     borderLeftWidth: 3,
     borderRightWidth: 3,
     alignItems: 'center',
@@ -81,85 +82,100 @@ const styles = {
     alignItems: 'center',
     flex: 1,
   },
-  titleArea: {
-    flex: 2,
-  },
-  rehabilitationIcon: {
-    backgroundColor: '#66D9D9',
-  },
-  rankingListIcon: {
-    backgroundColor: '#1A71B7',
-  },
-  personalInformationIcon: {
-    backgroundColor: '#FFCC33',
-    color: '#fff',
-  },
-  cardTitle: {
-    fontSize: 30,
-  },
+  titleArea: { flex: 2 },
+  rehabilitationIcon: { backgroundColor: brandColor },
+  rankingListIcon: { backgroundColor: secondColor },
+  personalInformationIcon: { backgroundColor: lightColor },
+  cardTitle: { fontSize: 30 },
 };
 
 class HomePage extends Component {
+  componentDidMount() {
+    console.log('test');
+  }
+
   render() {
+    const {
+      container,
+      header,
+      headerTitle,
+      headerSubTitle,
+      panel,
+      panelEveryday,
+      panelLabel,
+      panelNumber,
+      panelTotal,
+      panelScore,
+      functionSection,
+      functionCard,
+      iconArea,
+      rehabilitationIcon,
+      titleArea,
+      cardTitle,
+      rankingListIcon,
+      personalInformationIcon,
+    } = styles;
+
     return (
-      <View style={styles.container}>
-        <View style={styles.header}>
-          <Text style={styles.headerTitle}>Project D</Text>
-          <Text style={styles.headerSubTitle}>頭頸癌吞嚥復健app</Text>
+      <View style={container}>
+        <View style={header}>
+          <Text style={headerTitle}>Project D</Text>
+          <Text style={headerSubTitle}>頭頸癌吞嚥復健app</Text>
         </View>
-        <View style={styles.panel}>
-          <View style={styles.panelEveryday}>
-            <Text style={styles.panelLabel}>每天次數</Text>
-            <Text style={styles.panelNumber}>5</Text>
+        <View style={panel}>
+          <View style={panelEveryday}>
+            <Text style={panelLabel}>每天次數</Text>
+            <Text style={panelNumber}>5</Text>
           </View>
-          <View style={styles.panelTotal}>
-            <Text style={styles.panelLabel}>總次數</Text>
-            <Text style={styles.panelNumber}>45</Text>
+          <View style={panelTotal}>
+            <Text style={panelLabel}>總次數</Text>
+            <Text style={panelNumber}>45</Text>
           </View>
-          <View style={styles.panelScore}>
-            <Text style={styles.panelLabel}>競賽分數</Text>
-            <Text style={styles.panelNumber}>7</Text>
+          <View style={panelScore}>
+            <Text style={panelLabel}>競賽分數</Text>
+            <Text style={panelNumber}>7</Text>
           </View>
         </View>
-        <View style={styles.functionSection}>
-          <View style={styles.functionCard}>
-            <View style={styles.iconArea}>
+        <View style={functionSection}>
+          <TouchableOpacity
+            onPress={() => {
+              Actions.recovery();
+            }}
+            style={functionCard}
+          >
+            <View style={iconArea}>
               <Avatar.Icon
                 size={65}
                 icon="accessibility"
                 color="#fff"
-                style={styles.rehabilitationIcon}
+                style={rehabilitationIcon}
               />
             </View>
-            <View style={styles.titleArea}>
-              <Text style={styles.cardTitle}>吞嚥復健</Text>
+            <View style={titleArea}>
+              <Text style={cardTitle}>吞嚥復健</Text>
             </View>
-          </View>
-          <View style={styles.functionCard}>
-            <View style={styles.iconArea}>
-              <Avatar.Icon
-                size={65}
-                icon="list"
-                style={styles.rankingListIcon}
-              />
+          </TouchableOpacity>
+          <TouchableOpacity style={functionCard}>
+            <View style={iconArea}>
+              <Avatar.Icon size={65} icon="equalizer" style={rankingListIcon} />
             </View>
-            <View style={styles.titleArea}>
-              <Text style={styles.cardTitle}>競賽排名</Text>
+            <View style={titleArea}>
+              <Text style={cardTitle}>競賽排名</Text>
             </View>
-          </View>
-          <View style={styles.functionCard}>
-            <View style={styles.iconArea}>
+          </TouchableOpacity>
+          <TouchableOpacity style={functionCard}>
+            <View style={iconArea}>
               <Avatar.Icon
                 size={65}
                 icon="person"
                 color="#fff"
-                style={styles.personalInformationIcon}
+                style={personalInformationIcon}
               />
             </View>
-            <View style={styles.titleArea}>
-              <Text style={styles.cardTitle}>個人資訊</Text>
+            <View style={titleArea}>
+              <Text style={cardTitle}>個人資訊</Text>
             </View>
-          </View>
+          </TouchableOpacity>
         </View>
       </View>
     );
