@@ -155,7 +155,12 @@ class HomePage extends Component {
               <Text style={cardTitle}>吞嚥復健</Text>
             </View>
           </TouchableOpacity>
-          <TouchableOpacity style={functionCard}>
+          <TouchableOpacity
+            onPress={() => {
+              Actions.rankingList();
+            }}
+            style={functionCard}
+          >
             <View style={iconArea}>
               <Avatar.Icon size={65} icon="equalizer" style={rankingListIcon} />
             </View>
