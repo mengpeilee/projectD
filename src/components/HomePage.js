@@ -14,7 +14,7 @@ const styles = {
   },
   // header
   header: {
-    backgroundColor: brandColor,
+    backgroundColor: secondColor,
     height: 80,
     justifyContent: 'center',
     alignItems: 'center',
@@ -47,7 +47,7 @@ const styles = {
     flex: 1,
   },
   panelTotal: {
-    borderColor: brandColor,
+    borderColor: secondColor,
     borderLeftWidth: 3,
     borderRightWidth: 3,
     alignItems: 'center',
@@ -155,7 +155,12 @@ class HomePage extends Component {
               <Text style={cardTitle}>吞嚥復健</Text>
             </View>
           </TouchableOpacity>
-          <TouchableOpacity style={functionCard}>
+          <TouchableOpacity
+            onPress={() => {
+              Actions.rankingList();
+            }}
+            style={functionCard}
+          >
             <View style={iconArea}>
               <Avatar.Icon size={65} icon="equalizer" style={rankingListIcon} />
             </View>
