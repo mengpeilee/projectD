@@ -168,7 +168,12 @@ class HomePage extends Component {
               <Text style={cardTitle}>競賽排名</Text>
             </View>
           </TouchableOpacity>
-          <TouchableOpacity style={functionCard}>
+          <TouchableOpacity
+            onPress={() => {
+              Actions.personalInformation();
+            }}
+            style={functionCard}
+          >
             <View style={iconArea}>
               <Avatar.Icon
                 size={65}
