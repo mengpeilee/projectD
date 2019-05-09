@@ -3,7 +3,6 @@ import {
   Text,
   ScrollView,
   TouchableOpacity,
-  Keyboard,
   TextInput,
   View,
 } from 'react-native';
@@ -45,12 +44,11 @@ const styles = {
 };
 
 class PersonalInformation extends Component {
-  state = {
-    isEdited: false,
-  };
+  state = { isEdited: false };
 
   render() {
     const { containerStyle, infoRow, title, content, nickNameRow } = styles;
+    const { isEdited } = this.state;
     return (
       <ScrollView style={containerStyle}>
         <View style={infoRow}>
@@ -62,13 +60,19 @@ class PersonalInformation extends Component {
           >
             <View>
               <Text style={title}>暱稱</Text>
-              <TextInput
-                editable={this.state.isEdited}
-                style={content}
-                selectTextOnFocus={this.state.isEdited}
-              >
-                王大哥
-              </TextInput>
+              {!isEdited && <Text style={content}>王大哥</Text>}
+              {isEdited && (
+                <TextInput
+                  style={content}
+                  autoFocus
+                  returnKeyType="send"
+                  onSubmitEditing={() => {
+                    this.setState({ isEdited: false });
+                  }}
+                >
+                  王大哥
+                </TextInput>
+              )}
             </View>
 
             <Icon name="edit" size={35} color={lightColor} />
