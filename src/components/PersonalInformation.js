@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import {
+  Keyboard,
   Text,
   ScrollView,
   TouchableOpacity,
@@ -36,6 +37,12 @@ const styles = {
     fontWeight: 'bold',
     color: '#565656',
   },
+  contentEditing: {
+    paddingLeft: 10,
+    fontSize: 20,
+    fontWeight: 'bold',
+    color: '#000',
+  },
   nickNameRow: {
     justifyContent: 'space-between',
     alignItems: 'center',
@@ -44,10 +51,32 @@ const styles = {
 };
 
 class PersonalInformation extends Component {
-  state = { isEdited: false };
+  state = { isEdited: false, nickName: '王大哥' };
+
+  componentDidMount() {
+    this.keyboardDidHideListener = Keyboard.addListener(
+      'keyboardDidHide',
+      this.keyboardDidHide,
+    );
+  }
+
+  componentWillUnmount() {
+    this.keyboardDidHideListener.remove();
+  }
+
+  keyboardDidHide = () => {
+    this.setState({ isEdited: false });
+  };
 
   render() {
-    const { containerStyle, infoRow, title, content, nickNameRow } = styles;
+    const {
+      containerStyle,
+      infoRow,
+      title,
+      content,
+      contentEditing,
+      nickNameRow,
+    } = styles;
     const { isEdited } = this.state;
     return (
       <ScrollView style={containerStyle}>
@@ -60,17 +89,18 @@ class PersonalInformation extends Component {
           >
             <View>
               <Text style={title}>暱稱</Text>
-              {!isEdited && <Text style={content}>王大哥</Text>}
+              {!isEdited && <Text style={content}>{this.state.nickName}</Text>}
               {isEdited && (
                 <TextInput
-                  style={content}
+                  style={contentEditing}
                   autoFocus
                   returnKeyType="send"
+                  onChangeText={text => this.setState({ nickName: text })}
                   onSubmitEditing={() => {
                     this.setState({ isEdited: false });
                   }}
                 >
-                  王大哥
+                  {this.state.nickName}
                 </TextInput>
               )}
             </View>
