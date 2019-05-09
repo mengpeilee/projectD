@@ -5,7 +5,7 @@ import { Actions } from 'react-native-router-flux';
 import Swiper from 'react-native-swiper';
 import { No2of2, No3of1, No4of2 } from '../image';
 
-const { width, height } = Dimensions.get('window');
+const { width } = Dimensions.get('window');
 
 const styles = {
   containerStyle: {
@@ -28,6 +28,7 @@ const styles = {
     color: '#fff',
     fontSize: 30,
     fontWeight: 'bold',
+    textAlign: 'center',
   },
   image: {
     flex: 1,
@@ -52,23 +53,21 @@ const styles = {
   },
 };
 
-class Recovery extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      context: '',
-      index: 0,
-      total: 0,
-    };
-  }
+const recoveryData = {
+  firstPracticeTitle: '孟德爾森練習\nstep1-3、共10次',
+  firstPracticeText1: '將您的手指放在喉結上',
+  firstPracticeText2: '做一個吞嚥的動作，並感受您的喉結上下移動',
+  firstPracticeText3:
+    '再吞嚥一次，用您的手向上推擠喉嚨的肌肉，讓喉結在上方停留三秒',
+};
 
+class Recovery extends Component {
   componentDidMount() {
     console.log('test');
   }
 
-  renderPagination() {
+  renderPagination = (index, total, context) => {
     const { barStyle, paginationStyle, paginationText, contextStyle } = styles;
-    const { context, index, total } = this.state;
     return (
       <View style={barStyle}>
         <Text style={contextStyle}>{context}</Text>
@@ -79,7 +78,7 @@ class Recovery extends Component {
         </View>
       </View>
     );
-  }
+  };
 
   render() {
     const { containerStyle, wrapper, slide, backStyle, text, image } = styles;
@@ -105,25 +104,28 @@ class Recovery extends Component {
           loop={false}
         >
           <View style={slide}>
+            <Text style={text}>{recoveryData.firstPracticeTitle}</Text>
+          </View>
+          <View style={slide}>
             <View>
               <Image style={image} source={No2of2} />
-              {this.renderPagination()}
+              {this.renderPagination(1, 3, recoveryData.firstPracticeText1)}
             </View>
           </View>
           <View style={slide}>
             <View>
               <Image style={image} source={No3of1} />
-              {this.renderPagination()}
+              {this.renderPagination(2, 3, recoveryData.firstPracticeText2)}
             </View>
           </View>
           <View style={slide}>
             <View>
-              <Image style={image} source={No3of1} />
-              {this.renderPagination()}
+              <Image style={image} source={No4of2} />
+              {this.renderPagination(3, 3, recoveryData.firstPracticeText3)}
             </View>
           </View>
           <View style={slide}>
-            <Text style={text}>恭喜完成！</Text>
+            <Text style={text}>請重複10次！</Text>
           </View>
         </Swiper>
         {this.renderPagination}
