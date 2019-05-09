@@ -1,5 +1,13 @@
 import React, { Component } from 'react';
-import { Text, ScrollView, View } from 'react-native';
+import {
+  Text,
+  ScrollView,
+  TouchableOpacity,
+  Keyboard,
+  TextInput,
+  View,
+} from 'react-native';
+import Icon from 'react-native-vector-icons/FontAwesome';
 
 const brandColor = '#54D6C3'; // 藍綠色
 const secondColor = '#1A71B7'; // 藍色
@@ -12,7 +20,7 @@ const styles = {
   },
   infoRow: {
     minHeight: 90,
-    paddingTop: 10,
+    justifyContent: 'center',
     marginLeft: 20,
     marginRight: 20,
     borderColor: brandColor,
@@ -29,16 +37,42 @@ const styles = {
     fontWeight: 'bold',
     color: '#565656',
   },
+  nickNameRow: {
+    justifyContent: 'space-between',
+    alignItems: 'center',
+    flexDirection: 'row',
+  },
 };
 
 class PersonalInformation extends Component {
+  state = {
+    isEdited: false,
+  };
+
   render() {
-    const { containerStyle, infoRow, title, content } = styles;
+    const { containerStyle, infoRow, title, content, nickNameRow } = styles;
     return (
       <ScrollView style={containerStyle}>
         <View style={infoRow}>
-          <Text style={title}>暱稱</Text>
-          <Text style={content}>王大哥</Text>
+          <TouchableOpacity
+            onPress={() => {
+              this.setState({ isEdited: true });
+            }}
+            style={nickNameRow}
+          >
+            <View>
+              <Text style={title}>暱稱</Text>
+              <TextInput
+                editable={this.state.isEdited}
+                style={content}
+                selectTextOnFocus={this.state.isEdited}
+              >
+                王大哥
+              </TextInput>
+            </View>
+
+            <Icon name="edit" size={35} color={lightColor} />
+          </TouchableOpacity>
         </View>
         <View style={infoRow}>
           <Text style={title}>姓名</Text>
