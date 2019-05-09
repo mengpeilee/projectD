@@ -1,11 +1,18 @@
 import React, { Component } from 'react';
-import { View, Text } from 'react-native';
+import { View, Text, TouchableOpacity } from 'react-native';
+import Icon from 'react-native-vector-icons/Ionicons';
+import { Actions } from 'react-native-router-flux';
 import Swiper from 'react-native-swiper';
 
 const styles = {
   containerStyle: {
     flex: 1,
-    backgroundColor: '#f2f2f2',
+    backgroundColor: '#fff',
+  },
+  backStyle: {
+    width: 70,
+    justifyContent: 'center',
+    alignItems: 'center',
   },
   wrapper: {},
   slide: {
@@ -51,23 +58,39 @@ class Recovery extends Component {
   }
 
   render() {
+    const { containerStyle, wrapper, slide, backStyle } = styles;
     return (
-      <Swiper
-        style={styles.wrapper}
-        renderPagination={renderPagination}
-        showsButtons
-        loop={false}
-      >
-        <View style={styles.slide}>
-          <Text style={styles.text}>Test</Text>
-        </View>
-        <View style={styles.slide}>
-          <Text style={styles.text}>Test2</Text>
-        </View>
-        <View style={styles.slide}>
-          <Text style={styles.text}>Test2</Text>
-        </View>
-      </Swiper>
+      <View style={containerStyle}>
+        <TouchableOpacity
+          style={backStyle}
+          onPress={() => {
+            Actions.pop();
+          }}
+        >
+          <Icon
+            name="ios-arrow-back"
+            backgroundColor="rgba(0,0,0,0)"
+            color="#1A71B7"
+            size={30}
+          />
+        </TouchableOpacity>
+        <Swiper
+          style={wrapper}
+          renderPagination={renderPagination}
+          showsButtons
+          loop={false}
+        >
+          <View style={slide}>
+            <Text style={styles.text}>Test</Text>
+          </View>
+          <View style={slide}>
+            <Text style={styles.text}>Test2</Text>
+          </View>
+          <View style={slide}>
+            <Text style={styles.text}>Test2</Text>
+          </View>
+        </Swiper>
+      </View>
     );
   }
 }

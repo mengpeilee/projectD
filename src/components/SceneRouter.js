@@ -9,9 +9,9 @@ class RouterComponent extends Component {
     return (
       <Router backAndroidHandler={() => true}>
         <Scene key="root" initial>
-          <Scene key="homePage" component={HomePage} hideNavBar initial />
-          <Scene key="recovery" component={Recovery} />
-          <Scene key="rankingList" component={RankingList} />
+          <Scene key="homePage" component={HomePage} initial hideNavBar />
+          <Scene key="recovery" component={Recovery} hideNavBar />
+          <Scene key="rankingList" component={RankingList} hideNavBar />
         </Scene>
       </Router>
     );
