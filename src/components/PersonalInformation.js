@@ -8,6 +8,8 @@ import {
   View,
 } from 'react-native';
 import Icon from 'react-native-vector-icons/FontAwesome';
+import Icon2 from 'react-native-vector-icons/Ionicons';
+import { Actions } from 'react-native-router-flux';
 
 const brandColor = '#54D6C3'; // 藍綠色
 const secondColor = '#1A71B7'; // 藍色
@@ -17,6 +19,11 @@ const styles = {
   containerStyle: {
     flex: 1,
     backgroundColor: '#FFF',
+  },
+  backStyle: {
+    width: 70,
+    justifyContent: 'center',
+    alignItems: 'center',
   },
   infoRow: {
     minHeight: 90,
@@ -76,67 +83,85 @@ class PersonalInformation extends Component {
       content,
       contentEditing,
       nickNameRow,
+      backStyle,
     } = styles;
     const { isEdited } = this.state;
     return (
-      <ScrollView style={containerStyle}>
-        <View style={infoRow}>
-          <TouchableOpacity
-            onPress={() => {
-              this.setState({ isEdited: true });
-            }}
-            style={nickNameRow}
-          >
-            <View>
-              <Text style={title}>暱稱</Text>
-              {!isEdited && <Text style={content}>{this.state.nickName}</Text>}
-              {isEdited && (
-                <TextInput
-                  style={contentEditing}
-                  autoFocus
-                  returnKeyType="send"
-                  onChangeText={text => this.setState({ nickName: text })}
-                  onSubmitEditing={() => {
-                    this.setState({ isEdited: false });
-                  }}
-                >
-                  {this.state.nickName}
-                </TextInput>
-              )}
-            </View>
+      <View style={containerStyle}>
+        <TouchableOpacity
+          style={backStyle}
+          onPress={() => {
+            Actions.pop();
+          }}
+        >
+          <Icon2
+            name="ios-arrow-back"
+            backgroundColor="rgba(0,0,0,0)"
+            color="#1A71B7"
+            size={30}
+          />
+        </TouchableOpacity>
+        <ScrollView>
+          <View style={infoRow}>
+            <TouchableOpacity
+              onPress={() => {
+                this.setState({ isEdited: true });
+              }}
+              style={nickNameRow}
+            >
+              <View>
+                <Text style={title}>暱稱</Text>
+                {!isEdited && (
+                  <Text style={content}>{this.state.nickName}</Text>
+                )}
+                {isEdited && (
+                  <TextInput
+                    style={contentEditing}
+                    autoFocus
+                    returnKeyType="send"
+                    onChangeText={text => this.setState({ nickName: text })}
+                    onSubmitEditing={() => {
+                      this.setState({ isEdited: false });
+                    }}
+                  >
+                    {this.state.nickName}
+                  </TextInput>
+                )}
+              </View>
 
-            <Icon name="edit" size={35} color={lightColor} />
-          </TouchableOpacity>
-        </View>
-        <View style={infoRow}>
-          <Text style={title}>姓名</Text>
-          <Text style={content}>王正雄</Text>
-        </View>
-        <View style={infoRow}>
-          <Text style={title}>年齡</Text>
-          <Text style={content}>57</Text>
-        </View>
-        <View style={infoRow}>
-          <Text style={title}>性別</Text>
-          <Text style={content}>男</Text>
-        </View>
-        <View style={infoRow}>
-          <Text style={title}>診斷</Text>
-          <Text style={content}>口腔癌</Text>
-        </View>
-        <View style={infoRow}>
-          <Text style={title}>有無手術</Text>
-          <Text style={content}>有</Text>
-        </View>
-        <View style={infoRow}>
-          <Text style={title}>有無放療</Text>
-          <Text style={content}>無</Text>
-        </View>
-        <View style={infoRow}>
-          <Text style={title}>有無化療</Text>
-          <Text style={content}>有</Text>
-        </View>
-      </ScrollView>
+              <Icon name="edit" size={35} color={lightColor} />
+            </TouchableOpacity>
+          </View>
+          <View style={infoRow}>
+            <Text style={title}>姓名</Text>
+            <Text style={content}>王正雄</Text>
+          </View>
+          <View style={infoRow}>
+            <Text style={title}>年齡</Text>
+            <Text style={content}>57</Text>
+          </View>
+          <View style={infoRow}>
+            <Text style={title}>性別</Text>
+            <Text style={content}>男</Text>
+          </View>
+          <View style={infoRow}>
+            <Text style={title}>診斷</Text>
+            <Text style={content}>口腔癌</Text>
+          </View>
+          <View style={infoRow}>
+            <Text style={title}>有無手術</Text>
+            <Text style={content}>有</Text>
+          </View>
+          <View style={infoRow}>
+            <Text style={title}>有無放療</Text>
+            <Text style={content}>無</Text>
+          </View>
+          <View style={infoRow}>
+            <Text style={title}>有無化療</Text>
+            <Text style={content}>有</Text>
+          </View>
+        </ScrollView>
+      </View>
     );
   }
 }
