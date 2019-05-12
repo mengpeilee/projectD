@@ -16,6 +16,22 @@ const secondColor = '#1A71B7'; // 藍色
 const lightColor = '#FFCC33'; // 黃色
 
 const styles = {
+  pageHeader: {
+    paddingTop: 15,
+    paddingBottom: 15,
+    flexDirection: 'row',
+  },
+  pageTitle: {
+    fontSize: 30,
+    fontWeight: 'bold',
+    color: secondColor,
+    left: -35,
+    alignSelf: 'center',
+  },
+  titleWrapper: {
+    flex: 1,
+    justifyContent: 'center',
+  },
   containerStyle: {
     flex: 1,
     backgroundColor: '#FFF',
@@ -77,6 +93,9 @@ class PersonalInformation extends Component {
 
   render() {
     const {
+      pageHeader,
+      pageTitle,
+      titleWrapper,
       containerStyle,
       infoRow,
       title,
@@ -88,19 +107,24 @@ class PersonalInformation extends Component {
     const { isEdited } = this.state;
     return (
       <View style={containerStyle}>
-        <TouchableOpacity
-          style={backStyle}
-          onPress={() => {
-            Actions.pop();
-          }}
-        >
-          <Icon2
-            name="ios-arrow-back"
-            backgroundColor="rgba(0,0,0,0)"
-            color={secondColor}
-            size={30}
-          />
-        </TouchableOpacity>
+        <View style={pageHeader}>
+          <TouchableOpacity
+            style={backStyle}
+            onPress={() => {
+              Actions.pop();
+            }}
+          >
+            <Icon2
+              name="ios-arrow-back"
+              backgroundColor="rgba(0,0,0,0)"
+              color={secondColor}
+              size={30}
+            />
+          </TouchableOpacity>
+          <View style={titleWrapper}>
+            <Text style={pageTitle}>個人資訊</Text>
+          </View>
+        </View>
         <ScrollView>
           <View style={infoRow}>
             <TouchableOpacity
