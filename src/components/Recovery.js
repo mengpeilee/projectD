@@ -33,11 +33,28 @@ const brandColor = '#54D6C3'; // 藍綠色
 const secondColor = '#1A71B7'; // 藍色
 
 const styles = {
+  pageHeader: {
+    paddingTop: 15,
+    paddingBottom: 15,
+    flexDirection: 'row',
+  },
+  pageTitle: {
+    fontSize: 30,
+    fontWeight: 'bold',
+    color: secondColor,
+    left: -35,
+    alignSelf: 'center',
+  },
+  titleWrapper: {
+    flex: 1,
+    justifyContent: 'center',
+  },
   containerStyle: {
     flex: 1,
     backgroundColor: '#fff',
   },
   backStyle: {
+    left: 0,
     width: 70,
     justifyContent: 'center',
     alignItems: 'center',
@@ -77,12 +94,13 @@ const styles = {
     right: 10,
   },
   paginationText: { fontSize: 20 },
+  contentView: { padding: 10 },
   contextStyle: {
-    fontSize: 20,
+    fontSize: 25,
     textAlign: 'left',
   },
   barStyle: {
-    height: 150,
+    height: 200,
     shadowOpacity: 0.3,
     shadowOffset: { width: 0, height: 2 }, // 左右不要有陰影
     backgroundColor: '#fff',
@@ -162,10 +180,18 @@ class Recovery extends Component {
   }
 
   renderPagination = (index, total, context) => {
-    const { barStyle, paginationStyle, paginationText, contextStyle } = styles;
+    const {
+      barStyle,
+      paginationStyle,
+      paginationText,
+      contextStyle,
+      contentView,
+    } = styles;
     return (
       <View style={barStyle}>
-        <Text style={contextStyle}>{context}</Text>
+        <View style={contentView}>
+          <Text style={contextStyle}>{context}</Text>
+        </View>
         <View style={paginationStyle}>
           <Text style={{ color: 'grey' }}>
             <Text style={paginationText}>{index}</Text>/{total}
@@ -177,6 +203,9 @@ class Recovery extends Component {
 
   render() {
     const {
+      pageHeader,
+      pageTitle,
+      titleWrapper,
       containerStyle,
       wrapper,
       slide,
@@ -189,19 +218,24 @@ class Recovery extends Component {
     const { practiceNum, swiperData } = this.state;
     return (
       <View style={containerStyle}>
-        <TouchableOpacity
-          style={backStyle}
-          onPress={() => {
-            Actions.pop();
-          }}
-        >
-          <Icon
-            name="ios-arrow-back"
-            backgroundColor="rgba(0,0,0,0)"
-            color={secondColor}
-            size={30}
-          />
-        </TouchableOpacity>
+        <View style={pageHeader}>
+          <TouchableOpacity
+            style={backStyle}
+            onPress={() => {
+              Actions.pop();
+            }}
+          >
+            <Icon
+              name="ios-arrow-back"
+              backgroundColor="rgba(0,0,0,0)"
+              color={secondColor}
+              size={30}
+            />
+          </TouchableOpacity>
+          <View style={titleWrapper}>
+            <Text style={pageTitle}>吞嚥復健</Text>
+          </View>
+        </View>
         <Swiper
           style={wrapper}
           // renderPagination={this.pagination}

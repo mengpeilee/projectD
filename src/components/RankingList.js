@@ -1,10 +1,28 @@
 import React, { Component } from 'react';
-import { ScrollView, View, TouchableOpacity } from 'react-native';
+import { ScrollView, View, TouchableOpacity, Text } from 'react-native';
 import Icon from 'react-native-vector-icons/Ionicons';
 import { Actions } from 'react-native-router-flux';
 import { Table, Row } from 'react-native-table-component';
 
+const secondColor = '#1A71B7'; // 藍色
+
 const styles = {
+  pageHeader: {
+    paddingTop: 15,
+    paddingBottom: 15,
+    flexDirection: 'row',
+  },
+  pageTitle: {
+    fontSize: 30,
+    fontWeight: 'bold',
+    color: secondColor,
+    left: -35,
+    alignSelf: 'center',
+  },
+  titleWrapper: {
+    flex: 1,
+    justifyContent: 'center',
+  },
   containerStyle: {
     flex: 1,
     backgroundColor: '#FFF',
@@ -62,22 +80,37 @@ class RankingList extends Component {
   };
 
   render() {
-    const { backStyle, head, headText, dataWrapper, text, row } = styles;
+    const {
+      pageHeader,
+      pageTitle,
+      titleWrapper,
+      backStyle,
+      head,
+      headText,
+      dataWrapper,
+      text,
+      row,
+    } = styles;
     return (
       <View style={styles.containerStyle}>
-        <TouchableOpacity
-          style={backStyle}
-          onPress={() => {
-            Actions.pop();
-          }}
-        >
-          <Icon
-            name="ios-arrow-back"
-            backgroundColor="rgba(0,0,0,0)"
-            color="#1A71B7"
-            size={30}
-          />
-        </TouchableOpacity>
+        <View style={pageHeader}>
+          <TouchableOpacity
+            style={backStyle}
+            onPress={() => {
+              Actions.pop();
+            }}
+          >
+            <Icon
+              name="ios-arrow-back"
+              backgroundColor="rgba(0,0,0,0)"
+              color={secondColor}
+              size={30}
+            />
+          </TouchableOpacity>
+          <View style={titleWrapper}>
+            <Text style={pageTitle}>競賽排名</Text>
+          </View>
+        </View>
         <Table borderStyle={{ borderWidth: 2, borderColor: '#f0f0f0' }}>
           <Row
             data={this.state.tableHead}
