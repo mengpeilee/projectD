@@ -102,6 +102,9 @@ class Recovery extends Component {
           // renderPagination={this.pagination}
           showsButtons
           loop={false}
+          ref={swiper => {
+            this.swiper = swiper;
+          }}
         >
           <View style={slide}>
             <Text style={text}>{recoveryData.firstPracticeTitle}</Text>
@@ -125,7 +128,14 @@ class Recovery extends Component {
             </View>
           </View>
           <View style={slide}>
-            <Text style={text}>請重複10次！</Text>
+            <Text
+              style={text}
+              onPress={() => {
+                this.swiper.scrollBy(-4, false);
+              }}
+            >
+              請重複10次！
+            </Text>
           </View>
         </Swiper>
         {this.renderPagination}
