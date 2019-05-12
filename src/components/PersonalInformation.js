@@ -97,7 +97,7 @@ class PersonalInformation extends Component {
           <Icon2
             name="ios-arrow-back"
             backgroundColor="rgba(0,0,0,0)"
-            color="#1A71B7"
+            color={secondColor}
             size={30}
           />
         </TouchableOpacity>
