@@ -1,11 +1,18 @@
 import React, { Component } from 'react';
-import { ScrollView, View } from 'react-native';
+import { ScrollView, View, TouchableOpacity } from 'react-native';
+import Icon from 'react-native-vector-icons/Ionicons';
+import { Actions } from 'react-native-router-flux';
 import { Table, Row } from 'react-native-table-component';
 
 const styles = {
   containerStyle: {
     flex: 1,
     backgroundColor: '#FFF',
+  },
+  backStyle: {
+    width: 70,
+    justifyContent: 'center',
+    alignItems: 'center',
   },
   head: {
     height: 40,
@@ -24,9 +31,7 @@ const styles = {
     fontWeight: '600',
     color: 'white',
   },
-  dataWrapper: {
-    marginTop: -1,
-  },
+  dataWrapper: { marginTop: -1 },
   row: {
     height: 40,
     backgroundColor: '#d2e9ff',
@@ -57,29 +62,40 @@ class RankingList extends Component {
   };
 
   render() {
+    const { backStyle, head, headText, dataWrapper, text, row } = styles;
     return (
       <View style={styles.containerStyle}>
+        <TouchableOpacity
+          style={backStyle}
+          onPress={() => {
+            Actions.pop();
+          }}
+        >
+          <Icon
+            name="ios-arrow-back"
+            backgroundColor="rgba(0,0,0,0)"
+            color="#1A71B7"
+            size={30}
+          />
+        </TouchableOpacity>
         <Table borderStyle={{ borderWidth: 2, borderColor: '#f0f0f0' }}>
           <Row
             data={this.state.tableHead}
             widthArr={this.state.widthArr}
-            style={styles.head}
-            textStyle={styles.headText}
+            style={head}
+            textStyle={headText}
           />
         </Table>
 
-        <ScrollView style={styles.dataWrapper}>
+        <ScrollView style={dataWrapper}>
           <Table borderStyle={{ borderWidth: 2, borderColor: '#f0f0f0' }}>
             {this.state.tableData.map((rowData, index) => (
               <Row
                 key={index}
                 data={rowData}
                 widthArr={this.state.widthArr}
-                style={[
-                  styles.row,
-                  index % 2 && { backgroundColor: '#66b3ff' },
-                ]}
-                textStyle={styles.text}
+                style={[row, index % 2 && { backgroundColor: '#66b3ff' }]}
+                textStyle={text}
               />
             ))}
           </Table>

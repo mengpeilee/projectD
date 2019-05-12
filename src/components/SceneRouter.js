@@ -8,12 +8,16 @@ import PersonalInformation from './PersonalInformation';
 class RouterComponent extends Component {
   render() {
     return (
-      <Router backAndroidHandler={() => true}>
+      <Router>
         <Scene key="root" initial>
-          <Scene key="homePage" component={HomePage} hideNavBar initial />
-          <Scene key="recovery" component={Recovery} />
-          <Scene key="rankingList" component={RankingList} />
-          <Scene key="personalInformation" component={PersonalInformation} />
+          <Scene key="homePage" component={HomePage} initial hideNavBar />
+          <Scene key="recovery" component={Recovery} hideNavBar />
+          <Scene key="rankingList" component={RankingList} hideNavBar />
+          <Scene
+            key="personalInformation"
+            component={PersonalInformation}
+            hideNavBar
+          />
         </Scene>
       </Router>
     );
