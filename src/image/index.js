@@ -1,3 +1,5 @@
+import logo from './logo.png';
+import NYMULogo from './NYMU-logo.png';
 import No1of1 from './1-1.png';
 import No1of2 from './1-2.png';
 import No1of3 from './1-3.png';
@@ -20,6 +22,8 @@ import No4gif from './4.gif';
 import No5gif from './5.gif';
 
 export {
+  logo,
+  NYMULogo,
   No1of1,
   No1of2,
   No1of3,

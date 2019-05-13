@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
-import { View, Text, TouchableOpacity } from 'react-native';
+import { View, Text, TouchableOpacity, Image } from 'react-native';
 import { Avatar } from 'react-native-paper';
 import { Actions } from 'react-native-router-flux';
+import { logo, NYMULogo } from '../image';
 
 const brandColor = '#54D6C3'; // 藍綠色
 const secondColor = '#1A71B7'; // 藍色
@@ -16,6 +17,19 @@ const styles = {
   header: {
     backgroundColor: secondColor,
     height: 80,
+    flexDirection: 'row',
+    justifyContent: 'space-around',
+    alignItems: 'center',
+  },
+  logoImg: {
+    width: 50,
+    height: 50,
+  },
+  NYMULogoImg: {
+    width: 55,
+    height: 55,
+  },
+  headerTextArea: {
     justifyContent: 'center',
     alignItems: 'center',
   },
@@ -98,6 +112,9 @@ class HomePage extends Component {
     const {
       container,
       header,
+      logoImg,
+      NYMULogoImg,
+      headerTextArea,
       headerTitle,
       headerSubTitle,
       panel,
@@ -119,8 +136,12 @@ class HomePage extends Component {
     return (
       <View style={container}>
         <View style={header}>
-          <Text style={headerTitle}>Project D</Text>
-          <Text style={headerSubTitle}>頭頸癌吞嚥復健app</Text>
+          <Image style={logoImg} source={logo} />
+          <View style={headerTextArea}>
+            <Text style={headerTitle}>Project D</Text>
+            <Text style={headerSubTitle}>頭頸癌吞嚥復健app</Text>
+          </View>
+          <Image style={NYMULogoImg} source={NYMULogo} />
         </View>
         <View style={panel}>
           <View style={panelEveryday}>
