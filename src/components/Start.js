@@ -39,7 +39,7 @@ const styles = {
     flex: 1,
     paddingRight: 5,
     paddingLeft: 5,
-    fontSize: 15,
+    fontSize: 20,
     ...Platform.select({
       ios: { fontFamily: 'PingFang TC' },
       android: {
@@ -57,7 +57,17 @@ const styles = {
     flex: 5,
     justifyContent: 'flex-start',
   },
-  inputDiv: { height: 45 },
+  inputDiv: {
+    flexDirection: 'row',
+    justifyContent: 'center',
+    alignSelf: 'stretch',
+    backgroundColor: '#fbfbfb',
+    borderWidth: 1,
+    borderColor: '#D3D3D3',
+    borderRadius: 3,
+    marginBottom: 5,
+    height: 45,
+  },
   imageStyle: {
     width: 100,
     height: 100,
@@ -65,7 +75,10 @@ const styles = {
     alignSelf: 'center',
     resizeMode: 'contain',
   },
-  button: { alignSelf: 'flex-end' },
+  button: {
+    paddingTop: 20,
+    alignSelf: 'flex-end',
+  },
   loginBtn: {
     justifyContent: 'center',
     paddingVertical: 10,
@@ -73,11 +86,12 @@ const styles = {
     minWidth: 100,
     borderRadius: 25,
     borderWidth: 1,
-    borderColor: '#ED2A67',
-    backgroundColor: '#ED2A67',
+    borderColor: secondColor,
+    backgroundColor: secondColor,
   },
   loginTextStyle: {
-    fontSize: 14,
+    fontSize: 20,
+    color: '#fff',
     alignSelf: 'center',
   },
 };
@@ -130,7 +144,10 @@ class Start extends Component {
               autoCapitalize="none"
               onChangeText={text => this.setState({ nameText: text })}
               underlineColorAndroid="transparent"
-              // onSubmitEditing={onSubmitEditing}
+              returnKeyType="done"
+              onSubmitEditing={() => {
+                console.log('finish');
+              }}
             />
           </View>
           <View style={button}>
