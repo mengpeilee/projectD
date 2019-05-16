@@ -163,7 +163,7 @@ const recoveryData = [
     first: '將您的舌頭伸出在嘴唇或牙齒之間',
     second: '維持舌頭的姿勢，然後嘗試吞一口口水',
     third: '吞嚥後即可放鬆',
-    endTitle: '恭喜你完成所有練習\n請點擊按鈕回到主畫面',
+    endTitle: '完成10次後\n請點擊按鈕回到主畫面',
     buttonText: '結算分數',
     firstImage: No5of1,
     secondImage: No5of2,

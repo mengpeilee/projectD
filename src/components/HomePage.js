@@ -154,7 +154,7 @@ class HomePage extends Component {
           </View>
           <View style={panelScore}>
             <Text style={panelLabel}>競賽分數</Text>
-            <Text style={panelNumber}>7</Text>
+            <Text style={panelNumber}>70</Text>
           </View>
         </View>
         <View style={functionSection}>
