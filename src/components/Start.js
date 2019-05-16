@@ -3,14 +3,12 @@ import {
   View,
   Image,
   Text,
-  Dimensions,
   TouchableOpacity,
   Platform,
   TextInput,
 } from 'react-native';
+import { Actions } from 'react-native-router-flux';
 import { logo, NYMULogo } from '../image';
-
-const { width, height } = Dimensions.get('window');
 
 const secondColor = '#1A71B7'; // 藍色
 
@@ -146,13 +144,15 @@ class Start extends Component {
               underlineColorAndroid="transparent"
               returnKeyType="done"
               onSubmitEditing={() => {
-                console.log('finish');
+                Actions.reset('main');
               }}
             />
           </View>
           <View style={button}>
             <TouchableOpacity
-              onPress={() => console.log('onPress')}
+              onPress={() => {
+                Actions.reset('main');
+              }}
               style={loginBtn}
             >
               <Text style={loginTextStyle}>登入</Text>
@@ -167,7 +167,7 @@ class Start extends Component {
     const { headerContainer, headerStyle } = styles;
     return (
       <View style={headerContainer}>
-        <Text style={headerStyle}>頭頸吞嚥復健APP</Text>
+        <Text style={headerStyle}>頭頸癌吞嚥復健APP</Text>
       </View>
     );
   };
