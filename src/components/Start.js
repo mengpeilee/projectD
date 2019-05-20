@@ -100,10 +100,12 @@ class Start extends Component {
     idText: '',
     nameText: '',
     showModal: false,
+    denyReasonPage: false,
+    denyText: '',
   };
 
   inputText = () => {
-    const { idText, nameText } = this.state;
+    const { idText, nameText, denyReasonPage, denyText } = this.state;
     const {
       topArea,
       imageStyle,
@@ -121,46 +123,78 @@ class Start extends Component {
           <Image style={imageStyle} source={logo} />
           <Image style={imageStyle} source={NYMULogo} />
         </View>
-        <View style={inputArea}>
-          <View style={inputDiv}>
-            <TextInput
-              placeholder="請輸入身分證字號"
-              placeholderTextColor="#ccc"
-              autoCorrect={false}
-              style={inputStyle}
-              value={idText}
-              autoCapitalize="none"
-              onChangeText={text => this.setState({ idText: text })}
-              underlineColorAndroid="transparent"
-            />
+        {!denyReasonPage && (
+          <View style={inputArea}>
+            <View style={inputDiv}>
+              <TextInput
+                placeholder="請輸入身分證字號"
+                placeholderTextColor="#ccc"
+                autoCorrect={false}
+                style={inputStyle}
+                value={idText}
+                autoCapitalize="none"
+                onChangeText={text => this.setState({ idText: text })}
+                underlineColorAndroid="transparent"
+              />
+            </View>
+            <View style={inputDiv}>
+              <TextInput
+                placeholder="請取一個屬於你的暱稱"
+                placeholderTextColor="#ccc"
+                autoCorrect={false}
+                style={inputStyle}
+                value={nameText}
+                autoCapitalize="none"
+                onChangeText={text => this.setState({ nameText: text })}
+                underlineColorAndroid="transparent"
+                returnKeyType="done"
+                onSubmitEditing={() => {
+                  this.setState({ showModal: true });
+                }}
+              />
+            </View>
+            <View style={button}>
+              <TouchableOpacity
+                onPress={() => {
+                  this.setState({ showModal: true });
+                }}
+                style={loginBtn}
+              >
+                <Text style={loginTextStyle}>登入</Text>
+              </TouchableOpacity>
+            </View>
           </View>
-          <View style={inputDiv}>
-            <TextInput
-              placeholder="請取一個屬於你的暱稱"
-              placeholderTextColor="#ccc"
-              autoCorrect={false}
-              style={inputStyle}
-              value={nameText}
-              autoCapitalize="none"
-              onChangeText={text => this.setState({ nameText: text })}
-              underlineColorAndroid="transparent"
-              returnKeyType="done"
-              onSubmitEditing={() => {
-                this.setState({ showModal: true });
-              }}
-            />
+        )}
+        {denyReasonPage && (
+          <View style={inputArea}>
+            <View style={inputDiv}>
+              <TextInput
+                placeholder="請輸入無法參與之原因"
+                placeholderTextColor="#ccc"
+                autoCorrect={false}
+                style={inputStyle}
+                value={denyText}
+                autoCapitalize="none"
+                onChangeText={text => this.setState({ denyText: text })}
+                underlineColorAndroid="transparent"
+                returnKeyType="done"
+                onSubmitEditing={() => {
+                  this.setState({ denyReasonPage: false });
+                }}
+              />
+            </View>
+            <View style={button}>
+              <TouchableOpacity
+                onPress={() => {
+                  this.setState({ denyReasonPage: false });
+                }}
+                style={loginBtn}
+              >
+                <Text style={loginTextStyle}>送出</Text>
+              </TouchableOpacity>
+            </View>
           </View>
-          <View style={button}>
-            <TouchableOpacity
-              onPress={() => {
-                this.setState({ showModal: true });
-              }}
-              style={loginBtn}
-            >
-              <Text style={loginTextStyle}>登入</Text>
-            </TouchableOpacity>
-          </View>
-        </View>
+        )}
       </View>
     );
   };
@@ -187,7 +221,7 @@ class Start extends Component {
           }}
           onPressText="願意"
           Cancel={() => {
-            this.setState({ showModal: false });
+            this.setState({ showModal: false, denyReasonPage: true });
           }}
           cancelText="不願意"
         >
