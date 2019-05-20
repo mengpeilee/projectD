@@ -169,7 +169,7 @@ class Start extends Component {
           <View style={inputArea}>
             <View style={inputDiv}>
               <TextInput
-                placeholder="請輸入無法參與之原因"
+                placeholder="請輸入無法參與之原因："
                 placeholderTextColor="#ccc"
                 autoCorrect={false}
                 style={inputStyle}
