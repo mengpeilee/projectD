@@ -4,6 +4,7 @@ import Icon from 'react-native-vector-icons/Ionicons';
 import { Actions } from 'react-native-router-flux';
 import Swiper from 'react-native-swiper';
 import { Button } from 'react-native-paper';
+import SureModal from './SureModal';
 import {
   No1of1,
   No1of2,
@@ -100,7 +101,7 @@ const styles = {
     textAlign: 'left',
   },
   barStyle: {
-    height: 200,
+    height: 230,
     shadowOpacity: 0.3,
     shadowOffset: { width: 0, height: 2 }, // 左右不要有陰影
     backgroundColor: '#fff',
@@ -113,7 +114,7 @@ const recoveryData = [
     first: '將您的手指放在喉結上',
     second: '做一個吞嚥的動作，並感受您的喉結上下移動',
     third: '再吞嚥一次，用您的手向上推擠喉嚨的肌肉，讓喉結在上方停留三秒',
-    endTitle: '完成10次後\n請點擊按鈕前往下一個練習',
+    endTitle: '完成10次後\n請點擊按鈕前往下個練習',
     buttonText: '下一個練習',
     firstImage: No1of1,
     secondImage: No1of2,
@@ -126,7 +127,7 @@ const recoveryData = [
     second: '當您將頭後傾停留之時，將您的下巴向前延伸如圖所示',
     third:
       '維持頭後傾的姿勢，將您的下巴向上往鼻子移動試圖要將嘴巴閉起，此時您應該可以感受到脖子前面的部分正在伸展，這樣的姿勢維持五秒鐘',
-    endTitle: '完成10次後\n請點擊按鈕前往下一個練習',
+    endTitle: '完成10次後\n請點擊按鈕前往下個練習',
     buttonText: '下一個練習',
     firstImage: No2of1,
     secondImage: No2of2,
@@ -138,7 +139,7 @@ const recoveryData = [
     first: '由鼻子吸氣然後憋住這口氣',
     second: '繼續憋氣，接著吞一口口水',
     third: '用一個咳嗽或清喉嚨的動作來吐氣，然後再做一次吞嚥的動作',
-    endTitle: '完成10次後\n請點擊按鈕前往下一個練習',
+    endTitle: '完成10次後\n請點擊按鈕前往下個練習',
     buttonText: '下一個練習',
     firstImage: No3of1,
     secondImage: No3of2,
@@ -151,7 +152,7 @@ const recoveryData = [
     second:
       '舌頭位於同樣位置時，盡可能地用喉嚨的力量用力吞一口口水，使用喉嚨的肌肉用力擠壓',
     third: '吞嚥後即可放鬆',
-    endTitle: '完成10次後\n請點擊按鈕前往下一個練習',
+    endTitle: '完成10次後\n請點擊按鈕前往下個練習',
     buttonText: '下一個練習',
     firstImage: No4of1,
     secondImage: No4of2,
@@ -163,7 +164,7 @@ const recoveryData = [
     first: '將您的舌頭伸出在嘴唇或牙齒之間',
     second: '維持舌頭的姿勢，然後嘗試吞一口口水',
     third: '吞嚥後即可放鬆',
-    endTitle: '恭喜你完成所有練習\n請點擊按鈕回到主畫面',
+    endTitle: '完成10次後\n請點擊按鈕完成練習',
     buttonText: '結算分數',
     firstImage: No5of1,
     secondImage: No5of2,
@@ -173,7 +174,11 @@ const recoveryData = [
 ];
 
 class Recovery extends Component {
-  state = { practiceNum: 1, swiperData: recoveryData[0] };
+  state = {
+    practiceNum: 1,
+    swiperData: recoveryData[0],
+    showModal: false,
+  };
 
   componentDidMount() {
     console.log('test');
@@ -215,9 +220,27 @@ class Recovery extends Component {
       gifImage,
       endText,
     } = styles;
-    const { practiceNum, swiperData } = this.state;
+    const { practiceNum, swiperData, showModal } = this.state;
     return (
       <View style={containerStyle}>
+        <SureModal
+          visible={showModal}
+          onPress={() => {
+            this.setState({
+              showModal: false,
+              swiperData: recoveryData[0],
+              practiceNum: 1,
+            });
+          }}
+          onPressText="再來一次吧"
+          Cancel={() => {
+            this.setState({ showModal: false });
+            Actions.pop();
+          }}
+          cancelText="明天繼續"
+        >
+          今天很棒！辛苦了!
+        </SureModal>
         <View style={pageHeader}>
           <TouchableOpacity
             style={backStyle}
@@ -278,14 +301,14 @@ class Recovery extends Component {
                 contentStyle={{ padding: 20, fontSize: 30 }}
                 onPress={() => {
                   if (practiceNum === 5) {
-                    Actions.pop();
+                    this.setState({ showModal: true });
                   } else {
                     this.setState({
                       swiperData: recoveryData[practiceNum],
                       practiceNum: practiceNum + 1,
                     });
-                    this.swiper.scrollBy(-4, false);
                   }
+                  this.swiper.scrollBy(-4, false);
                 }}
               >
                 {swiperData.buttonText}
