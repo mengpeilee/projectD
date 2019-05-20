@@ -4,6 +4,7 @@
   onPress={按下按鈕後觸發的function}
   onPressText={按鈕文字}
   Cancel={按下取消後觸發的function}
+  cancelText={取消文字}
 >
 */
 import React from 'react';
@@ -18,6 +19,8 @@ import {
 import { icon } from '../image';
 
 const { width } = Dimensions.get('window');
+
+const secondColor = '#1A71B7'; // 藍色
 
 const styles = {
   containerStyle: {
@@ -39,13 +42,13 @@ const styles = {
     borderColor: '#fff',
   },
   imageStyle: {
-    width: 35,
+    width: 50,
     alignSelf: 'center',
     resizeMode: 'contain',
   },
   textStyle: {
     padding: 15,
-    fontSize: 16,
+    fontSize: 25,
     textAlign: 'center',
   },
   checkArea: {
@@ -60,13 +63,13 @@ const styles = {
     marginRight: 3,
   },
   sureTextStyle: {
-    fontSize: 16,
+    fontSize: 20,
     textAlign: 'center',
+    color: secondColor,
   },
   cancelTextStyle: {
-    fontSize: 16,
+    fontSize: 20,
     textAlign: 'center',
-    color: '#ED2A67',
   },
 };
 
@@ -75,6 +78,7 @@ const SureModal = ({
   visible,
   onPress,
   onPressText,
+  cancelText,
   Cancel,
   onRequestClose,
 }) => {
@@ -108,7 +112,7 @@ const SureModal = ({
           </View>
           <View style={checkArea}>
             <TouchableOpacity style={btnDiv} onPress={Cancel}>
-              <Text style={cancelTextStyle}>否</Text>
+              <Text style={cancelTextStyle}>{cancelText}</Text>
             </TouchableOpacity>
             <TouchableOpacity style={btnDiv} onPress={onPress}>
               <Text style={sureTextStyle}>{onPressText}</Text>
@@ -120,4 +124,4 @@ const SureModal = ({
   );
 };
 
-export { SureModal };
+export default SureModal;

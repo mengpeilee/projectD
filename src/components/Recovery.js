@@ -4,6 +4,7 @@ import Icon from 'react-native-vector-icons/Ionicons';
 import { Actions } from 'react-native-router-flux';
 import Swiper from 'react-native-swiper';
 import { Button } from 'react-native-paper';
+import SureModal from './SureModal';
 import {
   No1of1,
   No1of2,
@@ -100,7 +101,7 @@ const styles = {
     textAlign: 'left',
   },
   barStyle: {
-    height: 200,
+    height: 230,
     shadowOpacity: 0.3,
     shadowOffset: { width: 0, height: 2 }, // 左右不要有陰影
     backgroundColor: '#fff',
@@ -163,7 +164,7 @@ const recoveryData = [
     first: '將您的舌頭伸出在嘴唇或牙齒之間',
     second: '維持舌頭的姿勢，然後嘗試吞一口口水',
     third: '吞嚥後即可放鬆',
-    endTitle: '完成10次後\n請點擊按鈕回到主畫面',
+    endTitle: '完成10次後\n請點擊按鈕完成練習',
     buttonText: '結算分數',
     firstImage: No5of1,
     secondImage: No5of2,
@@ -173,7 +174,11 @@ const recoveryData = [
 ];
 
 class Recovery extends Component {
-  state = { practiceNum: 1, swiperData: recoveryData[0] };
+  state = {
+    practiceNum: 1,
+    swiperData: recoveryData[0],
+    showModal: false,
+  };
 
   componentDidMount() {
     console.log('test');
@@ -215,9 +220,27 @@ class Recovery extends Component {
       gifImage,
       endText,
     } = styles;
-    const { practiceNum, swiperData } = this.state;
+    const { practiceNum, swiperData, showModal } = this.state;
     return (
       <View style={containerStyle}>
+        <SureModal
+          visible={showModal}
+          onPress={() => {
+            this.setState({
+              showModal: false,
+              swiperData: recoveryData[0],
+              practiceNum: 1,
+            });
+          }}
+          onPressText="再來一次吧"
+          Cancel={() => {
+            this.setState({ showModal: false });
+            Actions.pop();
+          }}
+          cancelText="明天繼續"
+        >
+          今天很棒！辛苦了!
+        </SureModal>
         <View style={pageHeader}>
           <TouchableOpacity
             style={backStyle}
@@ -278,14 +301,14 @@ class Recovery extends Component {
                 contentStyle={{ padding: 20, fontSize: 30 }}
                 onPress={() => {
                   if (practiceNum === 5) {
-                    Actions.pop();
+                    this.setState({ showModal: true });
                   } else {
                     this.setState({
                       swiperData: recoveryData[practiceNum],
                       practiceNum: practiceNum + 1,
                     });
-                    this.swiper.scrollBy(-4, false);
                   }
+                  this.swiper.scrollBy(-4, false);
                 }}
               >
                 {swiperData.buttonText}
