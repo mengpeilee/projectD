@@ -65,11 +65,12 @@ const styles = {
   sureTextStyle: {
     fontSize: 20,
     textAlign: 'center',
-    color: secondColor,
+    // color: secondColor,
   },
   cancelTextStyle: {
     fontSize: 20,
     textAlign: 'center',
+    color: secondColor,
   },
 };
 

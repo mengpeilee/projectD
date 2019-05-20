@@ -9,6 +9,7 @@ import {
 } from 'react-native';
 import { Actions } from 'react-native-router-flux';
 import { logo, NYMULogo } from '../image';
+import SureModal from './SureModal';
 
 const secondColor = '#1A71B7'; // 藍色
 
@@ -98,6 +99,7 @@ class Start extends Component {
   state = {
     idText: '',
     nameText: '',
+    showModal: false,
   };
 
   inputText = () => {
@@ -144,14 +146,14 @@ class Start extends Component {
               underlineColorAndroid="transparent"
               returnKeyType="done"
               onSubmitEditing={() => {
-                Actions.reset('main');
+                this.setState({ showModal: true });
               }}
             />
           </View>
           <View style={button}>
             <TouchableOpacity
               onPress={() => {
-                Actions.reset('main');
+                this.setState({ showModal: true });
               }}
               style={loginBtn}
             >
@@ -174,8 +176,23 @@ class Start extends Component {
 
   render() {
     const { containerStyle } = styles;
+    const { showModal } = this.state;
     return (
       <View style={containerStyle}>
+        <SureModal
+          visible={showModal}
+          onPress={() => {
+            this.setState({ showModal: false });
+            Actions.reset('main');
+          }}
+          onPressText="願意"
+          Cancel={() => {
+            this.setState({ showModal: false });
+          }}
+          cancelText="不願意"
+        >
+          您是否願意參加本院的吞嚥復健計畫？
+        </SureModal>
         {this.renderHeader()}
         {this.inputText()}
       </View>
