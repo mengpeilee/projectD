@@ -225,7 +225,7 @@ class Start extends Component {
           }}
           cancelText="不願意"
         >
-          您是否願意參加本院的吞嚥復健計畫？
+          您是否願意參加吞嚥復健計畫？
         </SureModal>
         {this.renderHeader()}
         {this.inputText()}
