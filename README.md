@@ -2,7 +2,7 @@
 
 - 和高雄榮總合作開發的prototype，為頭頸癌病人所做的復健app
 - A prototype developed in collaboration with Kaohsiung Veterans General Hospital
-- A rehabilitation app for head and neck cancer patients
+- A app for head and neck cancer patients to help them in physiotherapy
 
 <img src="https://github.com/mengpeilee/projectD/blob/master/README-PNG/MainPage.png" 
 alt="URL Scheme" width="281.25" height="609" border="50" />
